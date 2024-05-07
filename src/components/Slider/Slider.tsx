@@ -20,16 +20,18 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
-    }, 5000); // Cambia el intervalo de tiempo aquí (en milisegundos)
+    }, 5000); // El intervalo de tiempo 
     return () => clearInterval(interval);
   }, [currentImageIndex]);
 
   return (
     <div className={style.carousel}>
+      
       <img src={images[currentImageIndex]} alt={`Image ${currentImageIndex + 1}`} className={style.image} />
       <button className={style.button_prev} onClick={prevImage}>
         <Image src="/img/flechas/flecha-derecha.png" alt="" width={20} height={20} />
       </button>
+      <h1 className={style.titulo}>InstaCHEF</h1>
       <button className={style.button_next} onClick={nextImage}>
         <Image src="/img/flechas/flecha-izquierda.png" alt="" width={20} height={20} />
       </button>
