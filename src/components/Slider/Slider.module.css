@@ -1,0 +1,58 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+}
+
+.button_next {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: #613c4c;
+    border: none;
+    color: white;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.button_next:hover {
+    background-color: #35313b;
+
+}
+
+.button_prev {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #453745;
+    border: none;
+    color: white;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.button_prev:hover {
+    background-color: #ff1457;
+}
+
+.image {
+    width: 100%;
+    height: 80vh;
+    object-fit: cover; 
+  }

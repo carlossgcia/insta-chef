@@ -1,10 +1,25 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import Menu from '../components/Menu/Menu';
+import Footer from '@/components/Footer/Footer';
+import Slider from '@/components/Slider/Slider';
+import React from 'react';
 
-const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const Home: React.FC = () => {
+  const images = [
+    '/img/carrousel/carrousel1.png',
+    '/img/carrousel/carrousel2.png',
+    'img/carrousel/carrousel3.png',
+  ];
+
   return (
-    <h1>Hola mundo</h1>
+    <>
+      <div className='cuerpo-menu sticky-top'>
+        <Menu />
+      </div>
+      <Slider images={images} /> 
+      <Footer />
+    </>
   );
 }
+
+export default Home;
