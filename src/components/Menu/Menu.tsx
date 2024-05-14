@@ -23,15 +23,15 @@ const Menu = () => {
                 <Nav >
                     <NavDropdown title="Recetas" id="collasible-nav-dropdown" className={style.links}>
                         <Link href="#" className='dropdown-item'>Subopción 1.1</Link>
-                        <Link  href="#" className="dropdown-item">Subopción 1.2</Link>
+                        <Link href="#" className="dropdown-item">Subopción 1.2</Link>
                         <NavDropdown.Divider />
                         <Link href="#" className="dropdown-item">Subopción 1.3</Link>
                     </NavDropdown>
                     <NavDropdown title="Intolerancias" id="collasible-nav-dropdown" className={style.links}>
-                        <Link  href="#" className="dropdown-item">Subopción 2.1</Link>
-                        <Link  href="#" className="dropdown-item">Subopción 2.2</Link>
+                        <Link href="#" className="dropdown-item">Subopción 2.1</Link>
+                        <Link href="#" className="dropdown-item">Subopción 2.2</Link>
                         <NavDropdown.Divider />
-                        <Link  href="#" className="dropdown-item">Subopción 2.3</Link>
+                        <Link href="#" className="dropdown-item">Subopción 2.3</Link>
                     </NavDropdown>
 
                     <Link href="/sobre-nosotros" className={`align-center ${style.links}`}>Sobre Nosotros</Link>
@@ -43,7 +43,9 @@ const Menu = () => {
                         <Image src="/img/carrito.png" alt="Carrito" height={40} width={50} className='m-4' />
                     </Link>
                     <div className='align-center'>
-                        <Image src="/img/user_icon.png" alt="Iniciar sesión" height={40} width={40} className='m-4' />
+                        <Link href="#"  >
+                            <Image src="/img/user_icon.png" alt="Iniciar sesión" height={40} width={40} className='m-4' />
+                        </Link>
                     </div>
                 </Nav>
             </Navbar.Collapse>

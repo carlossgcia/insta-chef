@@ -6,6 +6,10 @@
   --color5: #ff1457;
 }
 
+a {
+  text-decoration: none;
+}
+
 .body{
   background-color: var(--color1);
   width: 100%;
