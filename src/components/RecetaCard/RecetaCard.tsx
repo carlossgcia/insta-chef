@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 type RecetaCardProps = {
@@ -13,7 +14,7 @@ const RecetaCard: React.FC<RecetaCardProps> = ({ receta, ingredientes, usuario, 
         <div className="card mb-3" style={{ maxWidth: '100%' }}>
             <div className="row g-0">
                 <div className="col-md-4">
-                    <img src={`/img/recetas/${imagen}`} className="img-fluid rounded-start" alt={receta} />
+                    <Image src={`/img/recetas/${imagen}`} className="img-fluid rounded-start" alt={receta} width={90} height={90}/>
                 </div>
                 <div className="col-md-8">
                     <div className="card-body">

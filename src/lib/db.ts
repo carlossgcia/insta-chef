@@ -1,13 +1,11 @@
 import mysql from 'mysql2/promise';
 
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'cooking',
+  connectionLimit: 10, // Número máximo de conexiones en el grupo de conexiones
+});
 
-const connectionConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'cooking'
-};
-
-export async function getConnection() {
-    return await mysql.createConnection(connectionConfig);
-}
+export default pool;

@@ -1,30 +1,20 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import RecetaCard from './RecetaCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-type RecetaConIngredientesYUsuario = {
-    Receta: string;
-    Ingredientes: string;
-    Usuario: string;
-    Imagen: string;
-    id: number;
-};
+import { Receta } from '@/types/receta';
 
 export default function Recetas() {
-    const [recetas, setRecetas] = useState<RecetaConIngredientesYUsuario[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [recetas, setRecetas] = useState<Receta[]>([]);
 
     useEffect(() => {
         async function fetchRecetas() {
             try {
-                const response = await fetch('/api/recetas');
+                const response = await fetch('/api/consultaRecetas');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
                 setRecetas(data);
-                setLoading(false);
             } catch (error) {
                 console.error('Failed to fetch recipes:', error);
             }
@@ -32,28 +22,20 @@ export default function Recetas() {
 
         fetchRecetas();
     }, []);
-
-    if (loading) {
-        return <div>Cargando...</div>;
-    }
-
+    console.log(recetas)
     return (
         <div className="container">
             <h1>Recetas con Ingredientes</h1>
             <div className="row">
-                {recetas.map((receta, index) => (
-                    <div className="col-md-6" key={receta.id}>
-                        <Link href={`/receta/${receta.id}`} passHref>
-                            <a>
-                                <RecetaCard
-                                    receta={receta.Receta}
-                                    ingredientes={receta.Ingredientes}
-                                    usuario={receta.Usuario}
-                                    imagen={receta.Imagen}
-                                    id={receta.id}
-                                />
-                            </a>
-                        </Link>
+                {recetas.map((receta) => (
+                    <div className="col-md-6" key={receta.idReceta}>
+                        <RecetaCard
+                            receta={receta.titulo}
+                            ingredientes={receta.ingredientes}
+                            usuario={receta.nombreUsuario}
+                            imagen={receta.imagen}
+                            id={receta.idReceta}
+                        />
                     </div>
                 ))}
             </div>

@@ -1,70 +1,69 @@
-import { getConnection } from '../../lib/db';
+import { NextApiRequest, NextApiResponse } from 'next';
+import pool from '../../lib/db';
+import { Receta } from '@/types/receta';
 
-export async function obtenerRecetaPorId(id) {
-    const connection = await getConnection();
-    try {
-        const [results] = await connection.query(`
-            SELECT 
-                r.idReceta AS id,
-                r.titulo AS Receta, 
-                GROUP_CONCAT(i.nombre SEPARATOR ', ') AS Ingredientes, 
-                u.nombre AS Usuario,
-                r.imagen AS Imagen
-            FROM recetas r
-            JOIN usuarios u ON r.idUsuario = u.idUsuario
-            JOIN recetas_ingredientes ri ON r.idReceta = ri.idReceta
-            JOIN ingredientes i ON ri.idIngrediente = i.idIngrediente
-            WHERE r.idReceta = ?
-            GROUP BY r.idReceta, u.nombre
-        `, [id]);
-        return results;
-    } catch (error) {
-        throw new Error('Error fetching data');
-    } finally {
-        connection.end();
-    }
-}
+const getRecetas = async (): Promise<Receta[]> => {
+    const [rows] = await pool.query<any[]>(
+        `SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes
+        FROM recetas_ingredientes r 
+        JOIN recetas c ON r.idReceta = c.idReceta 
+        JOIN ingredientes i ON r.idIngrediente = i.idIngrediente 
+        JOIN usuarios u ON c.idUsuario = u.idUsuario 
+        GROUP BY c.idReceta;`
+    );
 
-export async function obtenerTodasLasRecetas() {
-    const connection = await getConnection();
-    try {
-        const [results] = await connection.query(`
-            SELECT 
-                r.idReceta AS id,
-                r.titulo AS Receta, 
-                GROUP_CONCAT(i.nombre SEPARATOR ', ') AS Ingredientes, 
-                u.nombre AS Usuario,
-                r.imagen AS Imagen
-            FROM recetas r
-            JOIN usuarios u ON r.idUsuario = u.idUsuario
-            JOIN recetas_ingredientes ri ON r.idReceta = ri.idReceta
-            JOIN ingredientes i ON ri.idIngrediente = i.idIngrediente
-            GROUP BY r.idReceta, u.nombre
-        `);
-        return results;
-    } catch (error) {
-        throw new Error('Error fetching data');
-    } finally {
-        connection.end();
-    }
-}
+    const recetas: Receta[] = rows.map(row => ({
+        idReceta: row.idReceta,
+        nombreUsuario: row.nombreUsuario,
+        titulo: row.titulo,
+        descripcion: row.descripcion,
+        ingredientes: row.ingredientes,
+        imagen: row.imagen
+    }));
+   
+    return recetas;
+};
 
-export default async function handler(req, res) {
-    const { query: { id } } = req;
 
-    if (Array.isArray(id)) {
-        return res.status(400).json({ error: 'ID de receta inválido' });
-    }
+const getRecetaById = async (id: number): Promise<Receta | null> => {
+    const [rows] = await pool.query<any[]>(
+        `SELECT r.idReceta, r.idUsuario, r.titulo, r.descripcion, r.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes 
+        FROM recetas r
+        LEFT JOIN recetas_ingredientes ri ON r.idReceta = ri.idReceta
+        LEFT JOIN ingredientes i ON ri.idIngrediente = i.idIngrediente
+        LEFT JOIN usuarios u ON r.idUsuario = u.idUsuario
+        WHERE r.idReceta = ?
+        GROUP BY r.idReceta`, [id]
+    );
 
-    try {
+    const receta: Receta | null = rows.length ? {
+        idReceta: rows[0].idReceta,
+        titulo: rows[0].titulo,
+        descripcion: rows[0].descripcion,
+        ingredientes: rows[0].ingredientes,
+        imagen: rows[0].imagen,
+        nombreUsuario: rows[0].nombreUsuario
+    } : null;
+
+    return receta;
+};
+
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === 'GET') {
+        const { id } = req.query;
         if (id) {
-            const receta = await obtenerRecetaPorId(parseInt(id, 10));
-            res.status(200).json(receta);
+            const receta = await getRecetaById(Number(id));
+            if (receta) {
+                res.status(200).json(receta);
+            } else {
+                res.status(404).json({ message: 'Receta no encontrada' });
+            }
         } else {
-            const recetas = await obtenerTodasLasRecetas();
+            const recetas = await getRecetas();
             res.status(200).json(recetas);
         }
-    } catch (error) {
-        res.status(500).json({ error: 'Error fetching data' });
+    } else {
+        res.status(405).json({ message: 'Método no permitido' });
     }
 }
