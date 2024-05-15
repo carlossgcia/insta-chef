@@ -1,6 +1,8 @@
 import Menu from '@/components/Menu/Menu';
+import RecetaDetalles from '@/components/RecetaCard/RecetaDetalles';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+
 
 type RecetaDetalle = {
     id: number;
@@ -16,35 +18,37 @@ export default function RecetaDetalle() {
     const [receta, setReceta] = useState<RecetaDetalle | null>(null);
 
     useEffect(() => {
-        if (id) {
-            fetch(`/api/receta/${id}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Receta no encontrada');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    setReceta(data);
-                })
-                .catch(error => console.error('Error fetching data:', error));
+        async function fetchRecetas() {
+            try {
+                const response = await fetch(`/api/consultaId/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setReceta(data);
+            } catch (error) {
+                console.error('Failed to fetch recipes:', error);
+            }
         }
-    }, [id]);
 
-    if (!receta) {
-        return <div>Cargando...</div>;
-    }
-
+        fetchRecetas();
+    }, []);
+    console.log(receta)
     return (
         <div>
             <div className='cuerpo-menu sticky-top'>
                 <Menu />
             </div>
             <div className="container">
-                <h1>{receta.Receta}</h1>
-                <img src={`/img/receta/${receta.Imagen}`} alt={receta.Receta} />
-                <p><strong>Ingredientes:</strong> {receta.Ingredientes}</p>
-                <p><strong>Publicado por:</strong> {receta.Usuario}</p>
+
+            <RecetaDetalles
+                    idReceta={receta?.idReceta}
+                    titulo={receta?.titulo}
+                    descripcion={receta?.descripcion}
+                    ingredientes={receta?.ingredientes}
+                    imagen={receta?.imagen}
+                />
+
             </div>
         </div>
     );

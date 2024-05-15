@@ -14,7 +14,7 @@ const Menu = () => {
     return (
 
         <Navbar expanded={expanded} expand="lg" className='container menu'>
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="../">
                 <Image className={style.logo} src="/img/Logo.png" alt="Logo" height={100} width={100} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={handleNavCollapse} />

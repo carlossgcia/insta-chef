@@ -9,7 +9,8 @@ export default function Recetas() {
     useEffect(() => {
         async function fetchRecetas() {
             try {
-                const response = await fetch('/api/consultaRecetas');
+                const response = await fetch(`/api/consultaRecetas`);
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -22,7 +23,7 @@ export default function Recetas() {
 
         fetchRecetas();
     }, []);
-    console.log(recetas)
+    
     return (
         <div className="container">
             <h1>Recetas con Ingredientes</h1>
