@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 type RecetaCardProps = {
@@ -10,8 +11,14 @@ type RecetaCardProps = {
 };
 
 const RecetaCard: React.FC<RecetaCardProps> = ({ receta, ingredientes, usuario, imagen, id }) => {
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push(`/receta/${id}`);
+    };
+
     return (
-        <div className="card mb-3" style={{ maxWidth: '100%' }}>
+        <div className="card mb-3" style={{ maxWidth: '100%', cursor: 'pointer' }} onClick={handleClick}>
             <div className="row g-0">
                 <div className="col-md-4">
                     <Image src={`/img/recetas/${imagen}`} className="img-fluid rounded-start" alt={receta} width={90} height={90}/>
@@ -29,4 +36,5 @@ const RecetaCard: React.FC<RecetaCardProps> = ({ receta, ingredientes, usuario, 
 };
 
 export default RecetaCard;
+
 
