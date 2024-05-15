@@ -1,28 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import pool from '../../lib/db';
+import pool from '../../../lib/db';
 import { Receta } from '@/types/receta';
 
 
 //Solo por orden de publicacion
 const getRecetas = async (): Promise<Receta[]> => {
     const [rows] = await pool.query<any[]>(
-        `SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes
+        ` SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes
         FROM recetas_ingredientes r 
         JOIN recetas c ON r.idReceta = c.idReceta 
         JOIN ingredientes i ON r.idIngrediente = i.idIngrediente 
         JOIN usuarios u ON c.idUsuario = u.idUsuario 
-        GROUP BY c.idReceta
-        ORDER BY c.fechaPublicacion DESC
-        LIMIT 2;`
+        GROUP BY c.idReceta`
     );
-
-    /*TODAS LAS RECETAS:
-    SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes
-        FROM recetas_ingredientes r 
-        JOIN recetas c ON r.idReceta = c.idReceta 
-        JOIN ingredientes i ON r.idIngrediente = i.idIngrediente 
-        JOIN usuarios u ON c.idUsuario = u.idUsuario 
-        GROUP BY c.idReceta*/
 
     const recetas: Receta[] = rows.map(row => ({
         idReceta: row.idReceta,

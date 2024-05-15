@@ -6,4 +6,5 @@ export interface Receta {
   descripcion: string;
   ingredientes: string;
   imagen: string;
+  
 }

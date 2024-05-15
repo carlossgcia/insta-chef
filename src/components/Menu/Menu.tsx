@@ -22,7 +22,7 @@ const Menu = () => {
             <Navbar.Collapse className='justify-content-between'>
                 <Nav >
                     <NavDropdown title="Recetas" id="collasible-nav-dropdown" className={style.links}>
-                        <Link href="#" className='dropdown-item'>Subopción 1.1</Link>
+                        <Link href="recetas" className='dropdown-item'>Subopción 1.1</Link>
                         <Link href="#" className="dropdown-item">Subopción 1.2</Link>
                         <NavDropdown.Divider />
                         <Link href="#" className="dropdown-item">Subopción 1.3</Link>
