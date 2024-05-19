@@ -1,4 +1,3 @@
-// types/receta.ts
 export interface Receta {
   idReceta: number;
   nombreUsuario: string;
