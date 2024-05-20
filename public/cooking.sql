@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 02:23 PM
+-- Generation Time: May 20, 2024 at 06:01 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -84,17 +84,18 @@ CREATE TABLE `recetas` (
   `titulo` varchar(100) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `fechaPublicacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `imagen` varchar(100) NOT NULL
+  `imagen` varchar(100) NOT NULL,
+  `preparacion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `recetas`
 --
 
-INSERT INTO `recetas` (`idReceta`, `idUsuario`, `titulo`, `descripcion`, `fechaPublicacion`, `imagen`) VALUES
-(1, 1, 'Tacos al pastor', 'Deliciosos tacos mexicanos con carne de cerdo marinada y piña', '2024-04-16 14:35:54', ''),
-(2, 2, 'Paella Valenciana', 'Plato tradicional español con arroz, mariscos y pollo', '2024-04-16 14:35:54', ''),
-(3, 3, 'Spaghetti Carbonara', 'Pasta italiana con salsa de huevo, panceta, queso y pimienta negra', '2024-04-16 14:35:54', '');
+INSERT INTO `recetas` (`idReceta`, `idUsuario`, `titulo`, `descripcion`, `fechaPublicacion`, `imagen`, `preparacion`) VALUES
+(1, 1, 'Tacos al pastor', 'Deliciosos tacos mexicanos con carne de cerdo marinada y piña', '2024-04-16 14:35:54', 'tacos.jpg', '0'),
+(2, 2, 'Paella Valenciana', 'Plato tradicional español con arroz, mariscos y pollo', '2024-04-16 14:35:54', 'paella.jpg', '0'),
+(3, 3, 'Spaghetti Carbonara', 'Pasta italiana con salsa de huevo, panceta, queso y pimienta negra', '2024-04-16 14:35:54', 'espagueti_carbonara.jpg', '0');
 
 -- --------------------------------------------------------
 

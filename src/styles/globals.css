@@ -3,7 +3,7 @@
   --color2: #35313b;
   --color3: #453745;
   --color4: #613c4c;
-  --color5: #ff1457;
+  --color5: #ff3971;
 }
 
 a {
@@ -29,4 +29,7 @@ a {
 .align-center {
   display: flex;
   align-items: center;
+}
+.border-right {
+  border-right: 1px solid #ddd;
 }

@@ -4,7 +4,7 @@ import { Receta } from '@/types/receta';
 
 const getRecetaById = async (id: number): Promise<Receta | null> => {
     const [rows] = await pool.query<any[]>(
-        `SELECT r.idReceta, r.idUsuario, r.titulo, r.descripcion, r.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes 
+        `SELECT r.idReceta, r.idUsuario, r.titulo, r.descripcion, r.imagen, r.preparacion , u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes 
         FROM recetas r
         LEFT JOIN recetas_ingredientes ri ON r.idReceta = ri.idReceta
         LEFT JOIN ingredientes i ON ri.idIngrediente = i.idIngrediente

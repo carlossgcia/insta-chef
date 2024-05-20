@@ -13,7 +13,7 @@ const getRecetas = async (): Promise<Receta[]> => {
         JOIN usuarios u ON c.idUsuario = u.idUsuario 
         GROUP BY c.idReceta
         ORDER BY c.fechaPublicacion DESC
-        LIMIT 2;`
+        LIMIT 4;`
     );
 
     const recetas: Receta[] = rows.map(row => ({
