@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const hashedPassword = crypto.createHash('md5').update(password).digest('hex');
 
     try {
-      const [rows] = await pool.query('SELECT * FROM usuarios WHERE email = ? AND password = ?', [email, hashedPassword]);
+      const [rows] = await pool.query('SELECT * FROM usuarios WHERE nombre = ? AND password = ?', [email, hashedPassword]);
       
       if (rows.length > 0) {
         const user: User = {

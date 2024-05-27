@@ -4,8 +4,8 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'cooking',
-  connectionLimit: 10, // Número máximo de conexiones en el grupo de conexiones
+  database: 'cocina',
+  connectionLimit: 10, 
 });
 
 export default pool;

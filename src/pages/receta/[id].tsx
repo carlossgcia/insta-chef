@@ -10,6 +10,7 @@ type RecetaDetalle = {
     Ingredientes: string;
     Usuario: string;
     Imagen: string;
+    Preparacion: string;
 };
 
 export default function RecetaDetalle() {
@@ -47,6 +48,7 @@ export default function RecetaDetalle() {
                     descripcion={receta?.descripcion}
                     ingredientes={receta?.ingredientes}
                     imagen={receta?.imagen}
+                    preparacion = {receta?.preparacion}
                 />
 
             </div>

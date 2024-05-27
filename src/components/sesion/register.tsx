@@ -7,8 +7,6 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [telefono, setTelefono] = useState<string>('');
-  const [rol, setRol] = useState<number>(1); // Por defecto 1 para rol de usuario
-  const [imagen, setImagen] = useState<string>('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,90 +26,79 @@ const Register = () => {
           email,
           password,
           telefono,
-          rol,
-          imagen,
+
         }),
       });
       const data = await response.json();
       if (response.ok) {
         console.log(data);
-        alert('User registered successfully');
+        alert('Usuario registrado correctamente');
       } else {
         console.error(data);
-        alert('Error registering user');
+        alert('Error al registrar el usuario');
       }
     } catch (error) {
       console.error(error);
-      alert('Error registering user');
+      alert('Error al registrar el usuario');
     }
   };
 
   return (
     <div>
-      <h2>Register</h2>
+      <h2>Registrate si no tienes cuenta</h2>
       <Form onSubmit={handleSubmit} id='registro'>
-        <Form.Group controlId="formBasicNombre">
-          <Form.Label>Nombre</Form.Label>
+        <Form.Group className='mt-2' controlId="formBasicNombre">
+          <Form.Label>Nombre de usuario</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter nombre"
+            placeholder="Introduce un nombre de usuario"
             value={nombre}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setNombre(e.target.value)}
           />
         </Form.Group>
-        
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+
+        <Form.Group className='mt-2' controlId="formBasicEmail">
+          <Form.Label>Correo</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter email"
+            placeholder="Introduce un email"
             value={email}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className='mt-2' controlId="formBasicPassword">
+          <Form.Label>Contraseña</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             value={password}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
+        <Form.Group className='mt-2' controlId="formBasicConfirmPassword">
+          <Form.Label>Confirma la Contraseña</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Confirm Password"
+            placeholder="Confirma la Contraseña"
             value={confirmPassword}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicTelefono">
+        <Form.Group className='mt-2' controlId="formBasicTelefono">
           <Form.Label>Teléfono</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter teléfono"
+            placeholder="Introduce el teléfono"
             value={telefono}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setTelefono(e.target.value)}
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicImagen">
-          <Form.Label>Imagen</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter imagen URL"
-            value={imagen}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setImagen(e.target.value)}
-          />
-        </Form.Group>
-
         <Button variant="primary" type="submit" className="mt-3">
-          Register
+          Registrar
         </Button>
       </Form>
     </div>

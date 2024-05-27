@@ -5,16 +5,18 @@ import Link from 'next/link';
 import { parseCookies, destroyCookie } from 'nookies';
 
 import style from './Menu.module.css';
+import { useRouter } from 'next/navigation';
 
 const Menu = () => {
     const [expanded, setExpanded] = useState(false);
     const [user, setUser] = useState(null);
+    const router = useRouter();
 
     useEffect(() => {
         const cookies = parseCookies();
         const userData = cookies.userData;
 
-             if (userData) {
+        if (userData) {
             const parsedUserData = JSON.parse(userData);
             setUser({ name: parsedUserData.nombre });
         } else {
@@ -58,8 +60,10 @@ const Menu = () => {
                             <>
                                 <span className='m-4 fw-bold' style={{ color: "#2b2c30" }}>¡Bienvenido, {user.name}!</span>
 
-                                <button onClick={handleLogout} className='btn btn-link m-4'>Cerrar sesión</button>
-                                <button onClick={() => console.log("publicar")} className='btn btn-link m-4'>Publicar</button>
+                                <button onClick={handleLogout} className='btn btn-link '> <Image src="/img/menus/cerrar_sesion.png" alt="Cerrar sesión" height={30} width={30} className='m-4' /></button>
+                                <button onClick={() => {
+                                    router.push("/crud/agregar-receta")
+                                }} className='btn btn-link '><Image src="/img/menus/agregar.png" alt="Publicar" height={30} width={30} className='m-4' /></button>
 
                             </>
                         ) : (

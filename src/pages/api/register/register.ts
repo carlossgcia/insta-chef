@@ -11,8 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       const [result] = await pool.query(
-        'INSERT INTO usuarios (nombre, email, password, telefono, rol, imagen) VALUES (?, ?, ?, ?, ?, ?)',
-        [nombre, email, hashedPassword, telefono, rol, imagen]
+        'INSERT INTO usuarios (nombre, email, password, telefono) VALUES (?, ?, ?, ?)',
+        [nombre, email, hashedPassword, telefono]
       );
       res.status(200).json({ message: 'User registered successfully' });
     } catch (error) {

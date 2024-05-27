@@ -7,9 +7,10 @@ type RecetaDetallesProps = {
     descripcion: string;
     ingredientes: string;
     imagen: string;
+    preparacion: string
 };
 
-const RecetaDetalles: React.FC<RecetaDetallesProps> = ({ idReceta, titulo, descripcion, ingredientes, imagen }) => {
+const RecetaDetalles: React.FC<RecetaDetallesProps> = ({ idReceta, titulo, descripcion, ingredientes, imagen, preparacion }) => {
     return (
         <div className="receta-detalles">
             <h1 className="receta-detalles-titulo mt-4 text-center">{titulo}</h1>
@@ -21,9 +22,11 @@ const RecetaDetalles: React.FC<RecetaDetallesProps> = ({ idReceta, titulo, descr
                 <div className="receta-detalles-ingredientes">
                     <h2>Ingredientes:</h2>
                     <p>{ingredientes}</p>
+                    <h3>Descripcion</h3>
+                <p className="receta-detalles-descripcion">{descripcion}</p>
                 </div>
                 <h3>Preparacion</h3>
-                <p className="receta-detalles-descripcion">{descripcion}</p>
+                <p className="receta-detalles-descripcion">{preparacion}</p>
 
             </div>
         </div>

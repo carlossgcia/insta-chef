@@ -19,7 +19,8 @@ const getRecetaById = async (id: number): Promise<Receta | null> => {
         descripcion: rows[0].descripcion,
         ingredientes: rows[0].ingredientes,
         imagen: rows[0].imagen,
-        nombreUsuario: rows[0].nombreUsuario
+        nombreUsuario: rows[0].nombreUsuario,
+        preparacion: rows[0].preparacion
     } : null;
 
     return receta;

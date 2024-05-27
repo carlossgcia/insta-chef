@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 06:01 PM
+-- Generation Time: May 27, 2024 at 06:25 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cooking`
+-- Database: `cocina`
 --
 
 -- --------------------------------------------------------
@@ -93,7 +93,7 @@ CREATE TABLE `recetas` (
 --
 
 INSERT INTO `recetas` (`idReceta`, `idUsuario`, `titulo`, `descripcion`, `fechaPublicacion`, `imagen`, `preparacion`) VALUES
-(1, 1, 'Tacos al pastor', 'Deliciosos tacos mexicanos con carne de cerdo marinada y piña', '2024-04-16 14:35:54', 'tacos.jpg', '0'),
+(1, 1, 'Tacos al pastor', 'Deliciosos tacos mexicanos con carne de cerdo marinada y piña', '2024-04-16 14:35:54', 'tacos.jpg', '1. Preparar la marinada:\r\nLimpiar y hervir los chiles: Quita las semillas y las venas de los chiles guajillos y anchos. Hiérvelos en agua caliente durante unos 5-10 minutos hasta que estén suaves.\r\nLicuar la marinada: En una licuadora, coloca los chiles hervidos, el chile chipotle (si lo usas), el vinagre de manzana, el jugo de piña, la cebolla, los ajos, el orégano, el comino, el clavo de olor, la sal, el achiote y el aceite vegetal. Licúa hasta obtener una mezcla homogénea.\r\n2. Marinar la carne:\r\nMarinar: Coloca los filetes de cerdo en un recipiente grande o en una bolsa resellable. Vierte la marinada sobre la carne asegurándote de que todos los filetes queden bien cubiertos. Marinar en el refrigerador por al menos 4 horas, preferiblemente toda la noche.\r\n3. Cocinar la carne:\r\nAsar la carne: Tradicionalmente, la carne se cocina en un trompo (una especie de asador vertical), pero en casa puedes asarla en una parrilla o sartén a fuego medio-alto. Cocina los filetes por ambos lados hasta que estén bien cocidos y ligeramente caramelizados.\r\n4. Preparar los tacos:\r\nCalentar las tortillas: Calienta las tortillas de maíz en un comal o sartén.\r\nPicar la carne: Corta la carne en trozos pequeños.\r\nMontar los tacos: Coloca la carne sobre las tortillas calientes. Añade trozos de piña, cebolla picada y cilantro.\r\nServir: Acompaña los tacos con limones y salsa al gusto.'),
 (2, 2, 'Paella Valenciana', 'Plato tradicional español con arroz, mariscos y pollo', '2024-04-16 14:35:54', 'paella.jpg', '0'),
 (3, 3, 'Spaghetti Carbonara', 'Pasta italiana con salsa de huevo, panceta, queso y pimienta negra', '2024-04-16 14:35:54', 'espagueti_carbonara.jpg', '0');
 
@@ -136,7 +136,6 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `telefono` varchar(50) NOT NULL,
-  `rol` int(11) NOT NULL,
   `imagen` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -144,10 +143,10 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `nombre`, `email`, `password`, `telefono`, `rol`, `imagen`) VALUES
-(1, 'Juan', 'juan@example.com', 'contraseña1', '', 0, NULL),
-(2, 'María', 'maria@example.com', 'contraseña2', '', 0, NULL),
-(3, 'Pedro', 'pedro@example.com', 'contraseña3', '', 0, NULL);
+INSERT INTO `usuarios` (`idUsuario`, `nombre`, `email`, `password`, `telefono`, `imagen`) VALUES
+(1, 'Juan', 'juan@example.com', 'contraseña1', '', NULL),
+(2, 'María', 'maria@example.com', 'contraseña2', '', NULL),
+(3, 'Pedro', 'pedro@example.com', 'contraseña3', '', NULL);
 
 --
 -- Indexes for dumped tables
