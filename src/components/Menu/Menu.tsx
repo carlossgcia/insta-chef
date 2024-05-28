@@ -58,12 +58,15 @@ const Menu = () => {
                     <div className='align-center'>
                         {user ? (
                             <>
-                                <span className='m-4 fw-bold' style={{ color: "#2b2c30" }}>¡Bienvenido, {user.name}!</span>
-
-                                <button onClick={handleLogout} className='btn btn-link '> <Image src="/img/menus/cerrar_sesion.png" alt="Cerrar sesión" height={30} width={30} className='m-4' /></button>
+                                <button onClick={() => {
+                                    router.push("/perfil")
+                                }} className='btn .btn-custom '> <span className='m-4 fw-bold' style={{ color: "#2b2c30" }}>¡Bienvenido, {user.name}!</span>
+                                </button>
                                 <button onClick={() => {
                                     router.push("/crud/agregar-receta")
                                 }} className='btn btn-link '><Image src="/img/menus/agregar.png" alt="Publicar" height={30} width={30} className='m-4' /></button>
+
+                                <button onClick={handleLogout} className='btn btn-link '> <Image src="/img/menus/cerrar_sesion.png" alt="Cerrar sesión" height={30} width={30} className='m-4' /></button>
 
                             </>
                         ) : (

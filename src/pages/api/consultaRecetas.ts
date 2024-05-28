@@ -3,7 +3,6 @@ import pool from '../../lib/db';
 import { Receta } from '@/types/receta';
 
 
-//Solo por orden de publicacion
 const getRecetas = async (): Promise<Receta[]> => {
     const [rows] = await pool.query<any[]>(
         `SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes

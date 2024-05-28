@@ -5,7 +5,17 @@
   --color4: #613c4c;
   --color5: #ff3971;
 }
+.btn-custom {
+  background-color: #ffffff;
+  color: #2b2c30;
+  border: 2px solid #2b2c30;
+  transition: background-color 0.3s, color 0.3s;
+}
 
+.btn-custom:hover {
+  background-color: #2b2c30;
+  color: #ffffff;
+}
 a {
   text-decoration: none;
 }

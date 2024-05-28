@@ -54,7 +54,6 @@ export default function RecipeForm() {
             setImage('');
             setPreparation('');
             setSelectedIngredients([]);
-
             router.push('/')
         } else {
             alert('Error al añadir la receta');
@@ -62,7 +61,7 @@ export default function RecipeForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="container mt-5">
+        <form onSubmit={handleSubmit} className="container mt-5 mb-3">
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Título</label>
                 <input
