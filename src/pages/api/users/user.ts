@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import pool from '../../../lib/db';
-import { setCookie } from 'nookies'; 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {

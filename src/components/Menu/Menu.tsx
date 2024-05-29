@@ -18,12 +18,14 @@ const Menu = () => {
 
         if (userData) {
             const parsedUserData = JSON.parse(userData);
-            setUser({ name: parsedUserData.nombre });
+            setUser({ name: parsedUserData.nombre, id: parsedUserData.idUsuario });
+            /*  console.log(parsedUserData) //aqui mostramos todo del usuario
+             */
         } else {
             setUser(null);
         }
     }, []);
-
+    /* console.log(user)  */
     const handleNavCollapse = () => {
         setExpanded(!expanded);
     };
@@ -59,7 +61,7 @@ const Menu = () => {
                         {user ? (
                             <>
                                 <button onClick={() => {
-                                    router.push("/perfil")
+                                    router.push(`/perfil/${user.id}`);
                                 }} className='btn .btn-custom '> <span className='m-4 fw-bold' style={{ color: "#2b2c30" }}>¡Bienvenido, {user.name}!</span>
                                 </button>
                                 <button onClick={() => {
