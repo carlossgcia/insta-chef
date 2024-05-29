@@ -1,5 +1,5 @@
 // components/PerfilUsuario.tsx
-import { User } from '../types';
+import { User } from '@/types/user';
 
 interface PerfilUsuarioProps {
   user: User;

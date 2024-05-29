@@ -1,6 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import pool from '../../../lib/db';
-import { Receta } from '@/types/receta';
+type Receta = {
+    idReceta: number;
+    nombreUsuario: string;
+    titulo: string;
+    descripcion: string;
+    ingredientes: string;
+    imagen: string;
+    preparacion: string;
+  };
 
 const getRecetaById = async (id: number): Promise<Receta | null> => {
     const [rows] = await pool.query<any[]>(

@@ -1,17 +1,11 @@
-// pages/perfil/[id].tsx
 import { GetServerSideProps } from 'next';
-import { User } from '../../types';
-import pool from '@/lib/db'; 
+import pool from '@/lib/db';
 import Menu from '@/components/Menu/Menu';
 import Footer from '@/components/Footer/Footer';
 import PerfilUsuario from '@/components/Perfil/Perfilusuario';
 import RecetasUsuario from '@/components/RecetaCard/RecetasUsuario';
 
-interface PerfilProps {
-  user: User | null;
-}
-
-const Perfil: React.FC<PerfilProps> = ({ user }) => {
+const Perfil = ({ user }) => {
   if (!user) {
     return <div>Usuario no encontrado.</div>;
   }
@@ -24,7 +18,6 @@ const Perfil: React.FC<PerfilProps> = ({ user }) => {
       <div className='container'>
         <PerfilUsuario user={user} />
         <RecetasUsuario idUsuario={user.idUsuario} />
-
       </div>
       <Footer />
     </>
@@ -33,9 +26,9 @@ const Perfil: React.FC<PerfilProps> = ({ user }) => {
 
 export default Perfil;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params!;
-  let user: User | null = null;
+export const getServerSideProps = async (context) => {
+  const { id } = context.params;
+  let user = null;
 
   try {
     const [rows] = await pool.query('SELECT * FROM usuarios WHERE idUsuario = ?', [id]);

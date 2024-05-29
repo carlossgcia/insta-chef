@@ -1,22 +1,12 @@
-import Menu from '@/components/Menu/Menu';
-import RecetaDetalles from '@/components/RecetaCard/RecetaDetalles';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
-
-type RecetaDetalle = {
-    id: number;
-    Receta: string;
-    Ingredientes: string;
-    Usuario: string;
-    Imagen: string;
-    Preparacion: string;
-};
+import Menu from '@/components/Menu/Menu';
+import RecetaDetalles from '@/components/RecetaCard/RecetaDetalles';
 
 export default function RecetaDetalle() {
     const router = useRouter();
     const { id } = router.query;
-    const [receta, setReceta] = useState<RecetaDetalle | null>(null);
+    const [receta, setReceta] = useState(null);
 
     useEffect(() => {
         async function fetchRecetas() {
@@ -32,25 +22,27 @@ export default function RecetaDetalle() {
             }
         }
 
-        fetchRecetas();
-    }, []);
-    console.log(receta)
+        if (id) {
+            fetchRecetas();
+        }
+    }, [id]);
+
     return (
         <div>
             <div className='cuerpo-menu sticky-top'>
                 <Menu />
             </div>
             <div className="container">
-
-            <RecetaDetalles
-                    idReceta={receta?.idReceta}
-                    titulo={receta?.titulo}
-                    descripcion={receta?.descripcion}
-                    ingredientes={receta?.ingredientes}
-                    imagen={receta?.imagen}
-                    preparacion = {receta?.preparacion}
-                />
-
+                {receta && (
+                    <RecetaDetalles
+                        idReceta={receta.idReceta}
+                        titulo={receta.titulo}
+                        descripcion={receta.descripcion}
+                        ingredientes={receta.ingredientes}
+                        imagen={receta.imagen}
+                        preparacion={receta.preparacion}
+                    />
+                )}
             </div>
         </div>
     );

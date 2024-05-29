@@ -5,28 +5,27 @@ import { Receta } from '@/types/receta';
 
 const getRecetas = async (): Promise<Receta[]> => {
     const [rows] = await pool.query<any[]>(
-        `SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes
-        FROM recetas_ingredientes r 
-        JOIN recetas c ON r.idReceta = c.idReceta 
-        JOIN ingredientes i ON r.idIngrediente = i.idIngrediente 
-        JOIN usuarios u ON c.idUsuario = u.idUsuario 
-        GROUP BY c.idReceta
-        ORDER BY c.fechaPublicacion DESC
-        LIMIT 4;`
+      `SELECT c.idReceta, c.titulo, c.descripcion, c.imagen, u.nombre as nombreUsuario, GROUP_CONCAT(i.nombre SEPARATOR ', ') as ingredientes
+      FROM recetas_ingredientes r 
+      JOIN recetas c ON r.idReceta = c.idReceta 
+      JOIN ingredientes i ON r.idIngrediente = i.idIngrediente 
+      JOIN usuarios u ON c.idUsuario = u.idUsuario 
+      GROUP BY c.idReceta
+      ORDER BY c.fechaPublicacion DESC
+      LIMIT 4;`
     );
-
+  
     const recetas: Receta[] = rows.map(row => ({
-        idReceta: row.idReceta,
-        nombreUsuario: row.nombreUsuario,
-        titulo: row.titulo,
-        descripcion: row.descripcion,
-        ingredientes: row.ingredientes,
-        imagen: row.imagen
+      idReceta: row.idReceta,
+      nombreUsuario: row.nombreUsuario,
+      titulo: row.titulo,
+      descripcion: row.descripcion,
+      ingredientes: row.ingredientes,
+      imagen: row.imagen
     }));
-
+  
     return recetas;
-};
-
+  };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {

@@ -3,16 +3,9 @@ import pool from '../../../lib/db';
 import crypto from 'crypto';
 import { setCookie } from 'nookies';
 
-interface User {
-  idUsuario: number;
-  nombre: string;
-  email: string;
-  password: string;
-  telefono: string;
 
-}
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { email, password } = req.body;
 
@@ -22,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const [rows] = await pool.query('SELECT * FROM usuarios WHERE nombre = ? AND password = ?', [email, hashedPassword]);
       
       if (rows.length > 0) {
-        const user: User = {
+        const user = {
           idUsuario: rows[0].idUsuario,
           nombre: rows[0].nombre,
           email: rows[0].email,

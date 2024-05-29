@@ -7,6 +7,7 @@ import { parseCookies, destroyCookie } from 'nookies';
 import style from './Menu.module.css';
 import { useRouter } from 'next/navigation';
 
+
 const Menu = () => {
     const [expanded, setExpanded] = useState(false);
     const [user, setUser] = useState(null);
