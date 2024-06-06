@@ -1,10 +1,11 @@
-// components/UserRecipes.js
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const RecetasUsuario = ({ idUsuario }) => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,6 +33,13 @@ const RecetasUsuario = ({ idUsuario }) => {
     fetchRecipes();
   }, [idUsuario]);
  
+  const handleUpdateRecipe = async (idReceta) => {
+
+    router.push(`/crud/update-receta/${idReceta}`);
+    
+  }
+
+
   const handleDeleteRecipe = async (idReceta) => {
     
     try {
@@ -41,7 +49,6 @@ const RecetasUsuario = ({ idUsuario }) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      // Eliminar la receta de la lista local
       setRecipes(recipes.filter((recipe) => recipe.idReceta !== idReceta));
     } catch (error) {
       console.error('Error deleting recipe:', error);
@@ -49,7 +56,7 @@ const RecetasUsuario = ({ idUsuario }) => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p>Cargando tus recetas...</p>;
   }
 
   if (error) {
@@ -71,8 +78,8 @@ const RecetasUsuario = ({ idUsuario }) => {
                   <h5 className="card-title">{recipe.titulo}</h5>
                   <p className="card-text">{recipe.descripcion}</p>
                   <p className="card-text"><small className="text-muted">{recipe.fechaPublicacion}</small></p>
-                  <button className="btn btn-primary mr-2">Editar</button>
-                  <button className="btn btn-danger " onClick={() => handleDeleteRecipe(recipe.idReceta)}>Borrar</button>
+                  <button className="btn btn-primary m-2" onClick={() => handleUpdateRecipe(recipe.idReceta)}>Editar</button>
+                  <button className="btn btn-danger m-2" onClick={() => handleDeleteRecipe(recipe.idReceta)}>Borrar</button>
                 </div>
               </div>
             </div>
