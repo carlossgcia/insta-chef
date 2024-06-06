@@ -22,11 +22,16 @@ export default async function handler(req, res) {
 
     case 'PUT':
       const { titulo, descripcion, preparacion, idReceta } = req.body;
+      console.log("Si" + titulo + descripcion + preparacion + idReceta)
       try {
         await pool.query('UPDATE recetas SET titulo = ?, descripcion = ?, preparacion = ? WHERE idReceta= ?', [titulo, descripcion, preparacion, preparacion, idReceta]);
-        return res.status(200).json({ message: 'Recipe updated successfully' });
+
+        return res.status(200).json({ message: 'Receta  updated successfully' });
+
       } catch (error) {
+
         return res.status(500).json({ message: 'Error updating recipe', error });
+
       }
 
     default:

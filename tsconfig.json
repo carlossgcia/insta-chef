@@ -16,6 +16,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/perfil/[id].tsx", "src/pages/perfil/[id].tsx", "src/pages/api/users/user.js", "src/pages/api/register/login.js", "src/pages/api/crud/ingredientes.js", "src/pages/api/crud/agregar-receta.js", "src/pages/api/consultaRecetas.js", "src/components/recetas/RecipeForm.jsx", "src/pages/perfil/[id].tsx", "src/pages/api/users/recetas.js", "src/pages/api/crud/delete/[id].jsx", "src/components/RecetaCard/RecetasUsuario.jsx", "src/components/Menu/Menu.jsx", "src/pages/receta/[id].jsx", "src/pages/api/crud/editar/[idReceta].js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/perfil/[id].tsx", "src/pages/perfil/[id].tsx", "src/pages/api/users/user.js", "src/pages/api/register/login.js", "src/pages/api/crud/ingredientes.js", "src/pages/api/crud/agregar-receta.js", "src/pages/api/consultaRecetas.js", "src/components/recetas/RecipeForm.jsx", "src/pages/perfil/[id].tsx", "src/pages/api/users/recetas.js", "src/pages/api/crud/delete/[id].jsx", "src/components/RecetaCard/RecetasUsuario.jsx", "src/components/Menu/Menu.jsx", "src/pages/receta/[id].jsx", "src/pages/api/crud/editar/[idReceta].js", "src/pages/crud/update-receta/[idReceta].jsx"],
   "exclude": ["node_modules"]
 }

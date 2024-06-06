@@ -2,22 +2,13 @@ import Menu from '@/components/Menu/Menu';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-
-interface Recipe {
-  idReceta: string;
-  titulo: string;
-  descripcion: string;
-  nombre: string;
-  preparacion: string;
-}
-
 const UpdateReceta = () => {
-  const [recipe, setRecipe] = useState<Recipe | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const router = useRouter();
   const { idReceta } = router.query;
- 
+
   useEffect(() => {
     if (idReceta) {
       fetch(`/api/crud/editar/${idReceta}`)
@@ -25,7 +16,7 @@ const UpdateReceta = () => {
         .then((data) => {
           setRecipe(data);
           setLoading(false);
-          
+          console.log("Recipe fetched successfully:", data);
         })
         .catch((error) => {
           setError('Error fetching recipe');
@@ -33,11 +24,11 @@ const UpdateReceta = () => {
         });
     }
   }, [idReceta]);
-  console.log(recipe);
-  const handleUpdateRecipe = async (idReceta: string) => {
+
+  const handleUpdateRecipe = async (idReceta) => {
     if (recipe) {
       try {
-        const response = await fetch(`/api/editar/${idReceta}`, {
+        const response = await fetch(`/api/crud/editar/${idReceta}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -57,8 +48,13 @@ const UpdateReceta = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setRecipe({ ...recipe!, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRecipe({
+      ...recipe,
+      [name]: value,
+    });
+    console.log(recipe)
   };
 
   if (loading) return <p>Cargando recetas</p>;
@@ -70,60 +66,62 @@ const UpdateReceta = () => {
       <div className="container mt-5">
         <h1 className="mb-4">Update Recipe</h1>
         {recipe && (
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            handleUpdateRecipe(recipe.idReceta);
-          }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log("Updating recipe:", recipe);
+              handleUpdateRecipe(recipe);
+            }}
+          >
             <div className="mb-3">
-              <label htmlFor="title" className="form-label">Title</label>
+              <label htmlFor="titulo" className="form-label">Title</label>
               <input
                 type="text"
-                id="title"
-                name="title"
+                id="titulo"
+                name="titulo"
                 className="form-control"
                 value={recipe.titulo}
                 onChange={handleChange}
-                required />
+              />
             </div>
             <div className="mb-3">
-              <label htmlFor="description" className="form-label">Description</label>
+              <label htmlFor="descripcion" className="form-label">Description</label>
               <input
                 type="text"
-                id="description"
-                name="description"
+                id="descripcion"
+                name="descripcion"
                 className="form-control"
                 value={recipe.descripcion}
                 onChange={handleChange}
-                required />
+              />
             </div>
             <div className="mb-3">
-              <label htmlFor="ingredients" className="form-label">Ingredients</label>
+              <label htmlFor="nombre" className="form-label">Ingredients</label>
               <textarea
-                id="ingredients"
-                name="ingredients"
+                id="nombre"
+                name="nombre"
                 className="form-control"
                 rows={5}
                 value={recipe.nombre}
                 onChange={handleChange}
-                required
               ></textarea>
             </div>
             <div className="mb-3">
-              <label htmlFor="instructions" className="form-label">Instructions</label>
+              <label htmlFor="preparacion" className="form-label">Instructions</label>
               <textarea
-                id="instructions"
-                name="instructions"
+                id="preparacion"
+                name="preparacion"
                 className="form-control"
                 rows={5}
                 value={recipe.preparacion}
                 onChange={handleChange}
-                required
               ></textarea>
             </div>
             <button type="submit" className="btn btn-primary">Update Recipe</button>
           </form>
         )}
-      </div></>
+      </div>
+    </>
   );
 };
 
