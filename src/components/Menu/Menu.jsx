@@ -40,7 +40,7 @@ const Menu = () => {
     return (
         <Navbar expanded={expanded} expand="lg" className='container menu'>
             <Navbar.Brand href="../">
-                <Image className={style.logo} src="/img/Logo.png" alt="Logo" height={100} width={100} />
+                <Image className={style.logo} src="/img/menus/Logo.png" alt="Logo" height={100} width={100} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={handleNavCollapse} />
 
@@ -74,7 +74,7 @@ const Menu = () => {
                             </>
                         ) : (
                             <Link href="/logIn" >
-                                <Image src="/img/user_icon.png" alt="Iniciar sesión" height={40} width={40} className='m-4' />
+                                <Image src="/img/menus/user_icon.png" alt="Iniciar sesión" height={40} width={40} className='m-4' />
                             </Link>
                         )}
                     </div>

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   try {
     const connection = await pool.getConnection();
-    const [ingredients] = await connection.execute('SELECT idIngrediente, nombre FROM ingredientes');
+    const [ingredients] = await connection.execute('SELECT idIngrediente, nombre FROM ingredientes ORDER BY nombre');
     connection.release();
     res.status(200).json(ingredients);
   } catch (error) {

@@ -31,8 +31,14 @@ const Register = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
-        alert('Usuario registrado correctamente');
+        
+        alert('Usuario registrado correctamente, porfavor inicia sesion');
+        setNombre('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setTelefono('');
+
       } else {
         console.error(data);
         alert('Error al registrar el usuario');
@@ -54,6 +60,7 @@ const Register = () => {
             placeholder="Introduce un nombre de usuario"
             value={nombre}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setNombre(e.target.value)}
+            required
           />
         </Form.Group>
 
@@ -64,7 +71,7 @@ const Register = () => {
             placeholder="Introduce un email"
             value={email}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          />
+            required />
         </Form.Group>
 
         <Form.Group className='mt-2' controlId="formBasicPassword">
@@ -74,7 +81,7 @@ const Register = () => {
             placeholder="Contraseña"
             value={password}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-          />
+            required />
         </Form.Group>
 
         <Form.Group className='mt-2' controlId="formBasicConfirmPassword">
@@ -84,7 +91,7 @@ const Register = () => {
             placeholder="Confirma la Contraseña"
             value={confirmPassword}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
-          />
+            required />
         </Form.Group>
 
         <Form.Group className='mt-2' controlId="formBasicTelefono">
@@ -94,7 +101,7 @@ const Register = () => {
             placeholder="Introduce el teléfono"
             value={telefono}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setTelefono(e.target.value)}
-          />
+            required />
         </Form.Group>
 
         <Button variant="primary" type="submit" className="mt-3">
