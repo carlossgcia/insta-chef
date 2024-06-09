@@ -62,7 +62,9 @@ const UpdateReceta = () => {
 
   return (
     <>
-      <Menu />
+      <div className='cuerpo-menu sticky-top'>
+        <Menu />
+      </div>
       <div className="container mt-5">
         <h1 className="mb-4">Update Recipe</h1>
         {recipe && (
