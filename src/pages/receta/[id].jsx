@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Menu from '@/components/Menu/Menu';
 import RecetaDetalles from '@/components/RecetaCard/RecetaDetalles';
+import Footer from '@/components/Footer/Footer';
 
 export default function RecetaDetalle() {
     const router = useRouter();
@@ -44,6 +45,10 @@ export default function RecetaDetalle() {
                     />
                 )}
             </div>
+            <div className='mt-4'>
+                <Footer />
+            </div>
+            
         </div>
     );
 }

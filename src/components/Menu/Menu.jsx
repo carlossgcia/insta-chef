@@ -46,12 +46,10 @@ const Menu = () => {
 
             <Navbar.Collapse className='justify-content-between'>
                 <Nav>
-                    <NavDropdown title="Recetas" id="collasible-nav-dropdown" className={style.links}>
-                        <Link href="/recetas" className='dropdown-item'>Subopción 1.1</Link>
-                        <Link href="#" className="dropdown-item">Subopción 1.2</Link>
-                        <NavDropdown.Divider />
-                        <Link href="#" className="dropdown-item">Subopción 1.3</Link>
-                    </NavDropdown>
+
+                    <Link href="/recetas" className={`align-center ${style.links}`}>Recetas</Link>
+
+
                     <Link href="/sobre-nosotros" className={`align-center ${style.links}`}>Sobre Nosotros</Link>
                     <Link href="/tips" className={`align-center ${style.links}`} >Tips</Link>
 

@@ -12,22 +12,24 @@ type RecetaDetallesProps = {
 
 const RecetaDetalles: React.FC<RecetaDetallesProps> = ({ idReceta, titulo, descripcion, ingredientes, imagen, preparacion }) => {
     return (
-        <div className="receta-detalles">
-            <h1 className="receta-detalles-titulo mt-4 text-center">{titulo}</h1>
+        <div className="receta-detalles container">
+            <h1 className="receta-detalles-titulo mt-4 text-center display-4">{titulo}</h1>
             <div className="receta-detalles-imagen d-flex align-items-center justify-content-center mt-3">
-                <Image src={`/img/recetas/${imagen}`} alt={titulo} width={600} height={500} />
+                <Image src={`/img/recetas/${imagen}`} alt={titulo} className="img-fluid rounded shadow" width={600} height={500} />
             </div>
-            <div className="receta-detalles-contenido mt-4">
-
-                <div className="receta-detalles-ingredientes">
-                    <h2>Ingredientes:</h2>
-                    <p>{ingredientes}</p>
-                    <h3>Descripcion</h3>
-                <p className="receta-detalles-descripcion">{descripcion}</p>
+            <div className="receta-detalles-contenido mt-5">
+                <div className="receta-detalles-ingredientes p-4 rounded shadow">
+                    <h2 className="mb-3">Ingredientes</h2>
+                    <p className="lead">{ingredientes}</p>
                 </div>
-                <h3>Preparacion</h3>
-                <p className="receta-detalles-descripcion">{preparacion}</p>
-
+                <div className="receta-detalles-descripcion mt-4  p-4 rounded shadow">
+                    <h3 className="mb-3">Descripción</h3>
+                    <p className="lead">{descripcion}</p>
+                </div>
+                <div className="receta-detalles-preparacion mt-4  p-4 rounded shadow">
+                    <h3 className="mb-3">Preparación</h3>
+                    <p className="lead">{preparacion}</p>
+                </div>
             </div>
         </div>
     );
