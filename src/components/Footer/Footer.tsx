@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.css'; 
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
     return (
@@ -9,10 +10,10 @@ const Footer: React.FC = () => {
                     <div className="col-md-6">
                         <h5>Enlaces útiles</h5>
                         <ul className="list-unstyled">
-                            <li><a className={styles.a} href="/">Inicio</a></li>
-                            <li><a className={styles.a} href="/recetas">Recetas</a></li>
-                            <li><a className={styles.a} href="/sobre-nosotros">Sobre nosotros</a></li>
-                            <li><a className={styles.a} href="/tips">Tips</a></li>
+                            <li><Link className={styles.a} href="/">Inicio</Link></li>
+                            <li><Link className={styles.a} href="/recetas">Recetas</Link></li>
+                            <li><Link className={styles.a} href="/sobre-nosotros">Sobre nosotros</Link></li>
+                            <li><Link className={styles.a} href="/tips">Tips</Link></li>
                         </ul>
                     </div>
                     <div className="col-md-6">
