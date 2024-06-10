@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "/src/lib/db.ts",
+            "src": "next.config.mjs",
             "use": "@vercel/node"
         }
     ],
