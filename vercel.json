@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "next.config.mjs",
+            "src": "package.json",
             "use": "@vercel/node"
         }
     ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ]
+    "env": {
+    "DB_HOST": "bovoqq9l7vhba4nzew8i-mysql.services.clever-cloud.com",
+    "DB_USER": "ulggp18cupmluhhp",
+    "DB_PASSWORD": "ZiuZhkAlDwqgdPCvUYnx",
+    "DB_NAME": "bovoqq9l7vhba4nzew8i"
+  }
 }
