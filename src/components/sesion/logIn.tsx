@@ -21,15 +21,15 @@ const Login = () => {
       });
       if (response.ok) {
         
-        console.log('Inicio de sesión exitoso');
+        alert('Inicio de sesión exitoso');
         
         router.push('/');
       } else {
        
-        console.error('Error en inicio de sesión:', response.statusText);
+        alert('Error en inicio de sesión');
       }
     } catch (error) {
-      console.error('Error en inicio de sesión:', error);
+      alert('Error en inicio de sesión');
     }
   };
 
