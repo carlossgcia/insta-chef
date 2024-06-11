@@ -73,7 +73,7 @@ const RecetasUsuario = ({ idUsuario }) => {
           {recipes.map((recipe) => (
             <div key={recipe.idReceta} className="col-md-4 mb-4">
               <div className="card">
-                <img src={`/images/${recipe.imagen}`} className="card-img-top" alt={recipe.titulo} />
+                <img src={`/img/recetas/${recipe.imagen}`} className="card-img-top" alt={recipe.titulo} />
                 <div className="card-body">
                   <h5 className="card-title">{recipe.titulo}</h5>
                   <p className="card-text">{recipe.descripcion}</p>

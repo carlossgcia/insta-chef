@@ -1,31 +1,31 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: bovoqq9l7vhba4nzew8i-mysql.services.clever-cloud.com:3306
--- Generation Time: Jun 11, 2024 at 09:51 AM
--- Server version: 8.0.22-13
--- PHP Version: 8.3.7
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `bovoqq9l7vhba4nzew8i`
---
+CREATE DATABASE IF NOT EXISTS `cocina2`;
+USE `cocina2`;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `comentarios`
---
+
+CREATE TABLE `usuarios` (
+  `idUsuario` int NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `telefono` varchar(50) NOT NULL,
+  `imagen` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
+
+
+INSERT INTO `usuarios` (`idUsuario`, `nombre`, `email`, `password`, `telefono`, `imagen`) VALUES
+(1, 'Juan', 'juan@example.com', 'contraseña1', '', NULL),
+(2, 'María', 'maria@example.com', 'contraseña2', '', NULL),
+(3, 'Pedro', 'pedro@example.com', 'contraseña3', '', NULL),
+(4, 'carlos', 'carls@gmail.com', '88e7436afc4ca02741c771e9149a2e7c', '1234', NULL);
 
 CREATE TABLE `comentarios` (
   `idComentario` int NOT NULL,
@@ -33,11 +33,9 @@ CREATE TABLE `comentarios` (
   `idReceta` int DEFAULT NULL,
   `comentario` text,
   `fechaComentario` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
---
--- Dumping data for table `comentarios`
---
+
 
 INSERT INTO `comentarios` (`idComentario`, `idUsuario`, `idReceta`, `comentario`, `fechaComentario`) VALUES
 (1, 1, 1, '¡Estos tacos son increíbles! Los recomiendo totalmente.', '2024-04-16 14:35:55'),
@@ -45,20 +43,14 @@ INSERT INTO `comentarios` (`idComentario`, `idUsuario`, `idReceta`, `comentario`
 (3, 1, 2, 'La paella estaba deliciosa, gracias por compartir la receta.', '2024-04-16 14:35:55'),
 (4, 3, 3, 'La carbonara es mi plato italiano favorito, ¡gracias por la receta!', '2024-04-16 14:35:55');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `ingredientes`
---
 
 CREATE TABLE `ingredientes` (
   `idIngrediente` int NOT NULL,
   `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
---
--- Dumping data for table `ingredientes`
---
+
 
 INSERT INTO `ingredientes` (`idIngrediente`, `nombre`) VALUES
 (1, 'Carne de cerdo'),
@@ -72,11 +64,7 @@ INSERT INTO `ingredientes` (`idIngrediente`, `nombre`) VALUES
 (9, 'Queso'),
 (10, 'Pimienta negra');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `recetas`
---
 
 CREATE TABLE `recetas` (
   `idReceta` int NOT NULL,
@@ -86,11 +74,8 @@ CREATE TABLE `recetas` (
   `fechaPublicacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `imagen` varchar(100) NOT NULL,
   `preparacion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
---
--- Dumping data for table `recetas`
---
 
 INSERT INTO `recetas` (`idReceta`, `idUsuario`, `titulo`, `descripcion`, `fechaPublicacion`, `imagen`, `preparacion`) VALUES
 (1, 1, 'Tacos al pastor', 'Deliciosos tacos mexicanos con carne de cerdo marinada y piña', '2024-04-16 14:35:54', 'tacos.jpg', '1. Preparar la marinada:\r\nLimpiar y hervir los chiles: Quita las semillas y las venas de los chiles guajillos y anchos. Hiérvelos en agua caliente durante unos 5-10 minutos hasta que estén suaves.\r\nLicuar la marinada: En una licuadora, coloca los chiles hervidos, el chile chipotle (si lo usas), el vinagre de manzana, el jugo de piña, la cebolla, los ajos, el orégano, el comino, el clavo de olor, la sal, el achiote y el aceite vegetal. Licúa hasta obtener una mezcla homogénea.\r\n2. Marinar la carne:\r\nMarinar: Coloca los filetes de cerdo en un recipiente grande o en una bolsa resellable. Vierte la marinada sobre la carne asegurándote de que todos los filetes queden bien cubiertos. Marinar en el refrigerador por al menos 4 horas, preferiblemente toda la noche.\r\n3. Cocinar la carne:\r\nAsar la carne: Tradicionalmente, la carne se cocina en un trompo (una especie de asador vertical), pero en casa puedes asarla en una parrilla o sartén a fuego medio-alto. Cocina los filetes por ambos lados hasta que estén bien cocidos y ligeramente caramelizados.\r\n4. Preparar los tacos:\r\nCalentar las tortillas: Calienta las tortillas de maíz en un comal o sartén.\r\nPicar la carne: Corta la carne en trozos pequeños.\r\nMontar los tacos: Coloca la carne sobre las tortillas calientes. Añade trozos de piña, cebolla picada y cilantro.\r\nServir: Acompaña los tacos con limones y salsa al gusto.'),
@@ -104,20 +89,14 @@ INSERT INTO `recetas` (`idReceta`, `idUsuario`, `titulo`, `descripcion`, `fechaP
 (9, 4, 'Panna Cotta', 'Postre italiano de nata cocida y gelatina, servido con frutas frescas', '2024-06-11 14:35:54', 'panna_cotta.jpg', 'Preparar la gelatina:\n\nHidratar la gelatina: Hidrata 1 sobre de gelatina en polvo (7 g) en 3 cucharadas de agua fría durante 5 minutos.\nPreparar la nata:\n\nCalentar la nata: En una cacerola, calienta 500 ml de nata para montar, 100 ml de leche y 100 g de azúcar a fuego medio hasta que empiece a hervir.\nAñadir la gelatina: Retira del fuego y añade la gelatina hidratada, removiendo hasta que se disuelva por completo.\nVerter en moldes:\n\nRepartir la mezcla: Vierte la mezcla en moldes individuales y refrigera durante al menos 4 horas, o hasta que esté firme.\nServir:\n\nDesmoldar: Desmolda la panna cotta pasando un cuchillo por el borde y sumergiendo brevemente el molde en agua caliente.\nAcompañar: Sirve con frutas frescas, coulis de frutas o caramelo.'),
 (10, 2, 'Tiramisú', 'Postre italiano de capas de bizcocho empapado en café, mascarpone y cacao', '2024-06-11 14:35:54', 'tiramisu.jpg', 'Preparar el café:\n\nPreparar el café: Prepara una taza grande de café fuerte y déjalo enfriar. Añade 2 cucharadas de licor de café si lo deseas.\nPreparar la crema de mascarpone:\n\nBatir las yemas: Bate 4 yemas de huevo con 100 g de azúcar hasta que la mezcla esté pálida y cremosa.\nAñadir el mascarpone: Incorpora 500 g de mascarpone hasta obtener una mezcla homogénea.\nMontar las claras:\n\nBatir las claras: Bate 4 claras de huevo hasta obtener picos firmes e incorpóralas suavemente a la mezcla de mascarpone.\nMontar el tiramisú:\n\nSumergir los bizcochos: Sumerge 200 g de bizcochos de soletilla en el café frío y colócalos en una fuente.\nCapas de crema: Alterna capas de bizcochos empapados con capas de crema de mascarpone.\nRefrigerar y servir:\n\nRefrigerar: Refrigera el tiramisú durante al menos 4 horas, preferiblemente toda la noche.\nEspolvorear: Antes de servir, espolvorea con cacao en polvo y adorna con virutas de chocolate si lo deseas.');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `recetas_ingredientes`
---
 
 CREATE TABLE `recetas_ingredientes` (
   `idReceta` int NOT NULL,
   `idIngrediente` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
---
--- Dumping data for table `recetas_ingredientes`
---
+
 
 INSERT INTO `recetas_ingredientes` (`idReceta`, `idIngrediente`) VALUES
 (1, 1),
@@ -131,122 +110,58 @@ INSERT INTO `recetas_ingredientes` (`idReceta`, `idIngrediente`) VALUES
 (3, 9),
 (3, 10);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `usuarios`
---
 
-CREATE TABLE `usuarios` (
-  `idUsuario` int NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `telefono` varchar(50) NOT NULL,
-  `imagen` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `usuarios`
---
-
-INSERT INTO `usuarios` (`idUsuario`, `nombre`, `email`, `password`, `telefono`, `imagen`) VALUES
-(1, 'Juan', 'juan@example.com', 'contraseña1', '', NULL),
-(2, 'María', 'maria@example.com', 'contraseña2', '', NULL),
-(3, 'Pedro', 'pedro@example.com', 'contraseña3', '', NULL),
-(4, 'carlos', 'carls@gmail.com', '88e7436afc4ca02741c771e9149a2e7c', '1234', NULL);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `comentarios`
---
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`idComentario`),
   ADD KEY `idUsuario` (`idUsuario`),
   ADD KEY `idReceta` (`idReceta`);
 
---
--- Indexes for table `ingredientes`
---
 ALTER TABLE `ingredientes`
   ADD PRIMARY KEY (`idIngrediente`);
 
---
--- Indexes for table `recetas`
---
+
 ALTER TABLE `recetas`
   ADD PRIMARY KEY (`idReceta`),
   ADD KEY `idUsuario` (`idUsuario`);
 
---
--- Indexes for table `recetas_ingredientes`
---
+
 ALTER TABLE `recetas_ingredientes`
   ADD PRIMARY KEY (`idReceta`,`idIngrediente`),
   ADD KEY `idIngrediente` (`idIngrediente`);
 
---
--- Indexes for table `usuarios`
---
+
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `comentarios`
---
 ALTER TABLE `comentarios`
   MODIFY `idComentario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `ingredientes`
---
+
 ALTER TABLE `ingredientes`
   MODIFY `idIngrediente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- AUTO_INCREMENT for table `recetas`
---
+
 ALTER TABLE `recetas`
   MODIFY `idReceta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- AUTO_INCREMENT for table `usuarios`
---
+
 ALTER TABLE `usuarios`
   MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- Constraints for dumped tables
---
 
---
--- Constraints for table `comentarios`
---
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`idReceta`) REFERENCES `recetas` (`idReceta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `recetas`
---
+
 ALTER TABLE `recetas`
   ADD CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `recetas_ingredientes`
---
+
 ALTER TABLE `recetas_ingredientes`
   ADD CONSTRAINT `recetas_ingredientes_ibfk_1` FOREIGN KEY (`idReceta`) REFERENCES `recetas` (`idReceta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `recetas_ingredientes_ibfk_2` FOREIGN KEY (`idIngrediente`) REFERENCES `ingredientes` (`idIngrediente`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
