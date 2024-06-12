@@ -40,7 +40,7 @@ export default function RecipeForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log (JSON.stringify({ title, description, image, preparation, selectedIngredients }))
+        alert (JSON.stringify({ title, description,  preparation, selectedIngredients }))
         const res = await fetch('/api/crud/agregar-receta', {
             method: 'POST',
             body: JSON.stringify({ title, description, image, preparation, selectedIngredients }),
