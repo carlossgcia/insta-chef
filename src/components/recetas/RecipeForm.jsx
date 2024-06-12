@@ -42,9 +42,6 @@ export default function RecipeForm() {
         e.preventDefault();
         const res = await fetch('/api/crud/agregar-receta', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify({ title, description, image, preparation, selectedIngredients }),
         });
         if (res.ok) {
