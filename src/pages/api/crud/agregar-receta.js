@@ -29,6 +29,7 @@ export default async function handler(req, res) {
       await fs.writeFile(imagePath, image, 'base64');
 
       image = `/img/recetas/${imageName}`;
+      
     }
 
     const cookies = parseCookies({ req });
