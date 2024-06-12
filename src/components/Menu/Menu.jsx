@@ -35,6 +35,7 @@ const Menu = () => {
         destroyCookie(null, 'sessionId');
         destroyCookie(null, 'userData');
         setUser(null);
+        router.push("/");
     };
 
     return (
