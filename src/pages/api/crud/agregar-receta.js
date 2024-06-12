@@ -5,9 +5,6 @@ import { parseCookies } from 'nookies';
 
 
 export default async function handler(req, res) {
-  if (req.method == 'POST') {
-    return res.status(405).json({ message: req.method });
-  }
 
   const { title, description, preparation, selectedIngredients } = req.body;
   let { image } = req.body;
