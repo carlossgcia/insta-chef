@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       [user.idUsuario, title, description, imageName, preparation]
     );
 
-    const recipeId = result.insertId;
+  /*   const recipeId = result.insertId;
 
 
     for (const ingredientId of selectedIngredients) {
@@ -59,7 +59,7 @@ export default async function handler(req, res) {
         'INSERT INTO recetas_ingredientes (idReceta, idIngrediente) VALUES (?, ?)',
         [recipeId, ingredientId]
       );
-    }
+    } */
 
     await connection.commit();
     connection.release();
