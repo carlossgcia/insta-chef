@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
     case 'PUT':
       const { titulo, descripcion, preparacion, idReceta } = req.body;
-      console.log("Si" + titulo + descripcion + preparacion + idReceta)
+   
       try {
         await pool.query('UPDATE recetas SET titulo = ?, descripcion = ?, preparacion = ? WHERE idReceta= ?', [titulo, descripcion, preparacion, preparacion, idReceta]);
 

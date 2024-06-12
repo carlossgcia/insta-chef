@@ -61,7 +61,7 @@ export default function RecipeForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="container mt-5 mb-3">
+        <form onSubmit={handleSubmit} className="container mt-5 mb-3" method='POST'>
             <div className="mb-3">
                 <label htmlFor="title" className="form-label">Título</label>
                 <input
