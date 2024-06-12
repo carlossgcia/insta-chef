@@ -13,9 +13,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios' });
   }
 
+  let imageName;
   try {
-    let imageName;
-
     if (image) {
       const publicDir = path.join(process.cwd(), 'public', 'img', 'recetas');
       imageName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.jpg`;
@@ -25,9 +24,15 @@ export default async function handler(req, res) {
 
       await fs.writeFile(imagePath, image, 'base64');
 
-      image = `/img/recetas/${imageName}`;
-      
+
+
     }
+  } catch (error) {
+    console.error('Error al añadir la receta:', error);
+    res.status(500).json({ message: 'Error en imagen' });
+  }
+  try {
+
 
     const cookies = parseCookies({ req });
     const userData = cookies.userData;
