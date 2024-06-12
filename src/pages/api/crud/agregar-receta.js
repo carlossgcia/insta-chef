@@ -56,12 +56,12 @@ export default async function handler(req, res) {
     [user.idUsuario, title, description, imageName, preparation]
   );
 
-  const recipeId = result.insertId;
+  
 
   for (const ingredientId of selectedIngredients) {
     await connection.execute(
       'INSERT INTO recetas_ingredientes (idReceta, idIngrediente) VALUES (?, ?)',
-      [recipeId, ingredientId]
+      [18, ingredientId]
     );
   }
 
