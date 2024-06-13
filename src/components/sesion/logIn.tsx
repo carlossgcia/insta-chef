@@ -48,10 +48,10 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Contraseña</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
             value={password}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />
