@@ -5,6 +5,7 @@ import { parseCookies } from 'nookies';
 
 
 export default async function handler(req, res) {
+  
 
   const { title, description, preparation, selectedIngredients } = req.body;
   let { image } = req.body;
@@ -58,7 +59,7 @@ export default async function handler(req, res) {
     for (const ingredientId of selectedIngredients) {
       await connection.execute(
         'INSERT INTO recetas_ingredientes (idReceta, idIngrediente) VALUES (?, ?)',
-        [, ingredientId]
+        [5, ingredientId]
       );
     }
 
