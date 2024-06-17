@@ -20,13 +20,13 @@ const Menu = () => {
         if (userData) {
             const parsedUserData = JSON.parse(userData);
             setUser({ name: parsedUserData.nombre, id: parsedUserData.idUsuario });
-            /*  console.log(parsedUserData) //aqui mostramos todo del usuario
-             */
+            //aqui mostramos todo del usuario
+         
         } else {
             setUser(null);
         }
     }, []);
-    /* console.log(user)  */
+   
     const handleNavCollapse = () => {
         setExpanded(!expanded);
     };

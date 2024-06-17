@@ -66,7 +66,7 @@ const UpdateReceta = () => {
         <Menu />
       </div>
       <div className="container mt-5">
-        <h1 className="mb-4">Update Recipe</h1>
+        <h1 className="mb-4">Editar Receta</h1>
         {recipe && (
           <form
             onSubmit={(e) => {
@@ -76,7 +76,7 @@ const UpdateReceta = () => {
             }}
           >
             <div className="mb-3">
-              <label htmlFor="titulo" className="form-label">Title</label>
+              <label htmlFor="titulo" className="form-label">Titulo</label>
               <input
                 type="text"
                 id="titulo"
@@ -87,7 +87,7 @@ const UpdateReceta = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="descripcion" className="form-label">Description</label>
+              <label htmlFor="descripcion" className="form-label">Descripcion</label>
               <input
                 type="text"
                 id="descripcion"
@@ -98,7 +98,7 @@ const UpdateReceta = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="nombre" className="form-label">Ingredients</label>
+              <label htmlFor="nombre" className="form-label">Ingredientes</label>
               <textarea
                 id="nombre"
                 name="nombre"
@@ -109,7 +109,7 @@ const UpdateReceta = () => {
               ></textarea>
             </div>
             <div className="mb-3">
-              <label htmlFor="preparacion" className="form-label">Instructions</label>
+              <label htmlFor="preparacion" className="form-label">Instructiones</label>
               <textarea
                 id="preparacion"
                 name="preparacion"
@@ -119,7 +119,7 @@ const UpdateReceta = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Update Recipe</button>
+            <button type="submit" className="btn btn-primary">Editar</button>
           </form>
         )}
       </div>

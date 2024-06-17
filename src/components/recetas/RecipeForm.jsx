@@ -43,8 +43,19 @@ export default function RecipeForm() {
        
         const res = await fetch('/api/crud/agregar-receta', {
             method: 'POST',
-            body: JSON.stringify({ title, description, image, preparation, selectedIngredients }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title,
+                description,
+                preparation,
+                selectedIngredients,
+                image
+
+            }),
         });
+        
         if (res.ok) {
             alert('Receta añadida con éxito');
             setTitle('');
